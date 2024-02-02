@@ -13,14 +13,17 @@
     
     <section>
         <?php 
-            $url = "https://economia.awesomeapi.com.br/json/last/USD-BRL";
-            $iniciourl = curl_init($url);
-            $pegaResposta = curl_exec($iniciourl);
+            $inicio = date('d-m-Y', strtotime("-7 days"));
+            $fim = date('d-m-Y');
+            
+            $url = 'https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial=\'11-03-2023\'&@dataFinalCotacao=\'11-10-2023\'&$top=1&$orderby=cotacaoCompra%20desc&$format=json&$select=cotacaoCompra,dataHoraCotacao';
+
             $resposta = json_decode($pegaResposta);
             
             $taxa = $resposta["bid"];
             
             echo "$taxa";
+            
 
 
 
